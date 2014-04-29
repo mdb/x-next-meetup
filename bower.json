@@ -1,0 +1,27 @@
+{
+  "name": "x-next-meetup",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mdb/x-next-meetup",
+  "authors": [
+    "Mike Ball <mikedball@gmail.com>"
+  ],
+  "description": "A custom Polymer element for displaying a Meetup's next event",
+  "main": "src/x-next-meetup.html",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "meetup"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules"
+  ],
+  "dependencies": {
+    "platform": "Polymer/platform#~0.2.0",
+    "polymer": "Polymer/polymer#~0.2.0",
+    "polymer-jsonp": "Polymer/polymer-jsonp#~0.2.0",
+    "x-html": "PuppetJs/x-html#~0.0.20140210"
+  }
+}

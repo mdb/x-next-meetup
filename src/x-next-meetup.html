@@ -1,0 +1,89 @@
+<link rel="import" href="../bower_components/polymer-jsonp/polymer-jsonp.html">
+<link rel="import" href="../bower_components/x-html/x-html.html">
+
+<polymer-element name="x-next-meetup" attributes="sig sigId groupName">
+  <template>
+
+    <polymer-jsonp id="ajax" auto url="http://api.meetup.com/2/events?status=upcoming&order=time&limited_events=False&group_urlname={{groupName}}&desc=false&offset=0&format=json&page=20&fields=&sig_id={{sigId}}&sig={{sig}}&callback="></polymer-jsonp>
+
+    <template id="item" repeat="{{event in events}}">
+      <h2><a href="{{event.url}}">{{event.name}}</a></h2>
+      <time>{{event.time}}</time>
+      <h3><a href="{{event.mapUrl}}">{{event.venueName}}</a></h3>
+      <p>{{event.address}}</p>
+      <div class="x-next-meetup-description">
+        <x-html content="{{event.description}}"></x-html>
+      </div>
+      <a href="{{event.url}}">RSVP for {{event.name}}</a>
+    </template>
+
+  </template>
+
+  <script>
+    Polymer('x-next-meetup', {
+      sig: '',
+      sigId: '',
+      groupName: '',
+      ready: function () {
+        var buildModel = function (response) {
+          var evt = response.results[0],
+              date = new Date(evt.time),
+              formattedTime = function (date) {
+                var mins = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(),
+                    hours = date.getHours();
+
+                if (hours < 1) {
+                  return 12 + ':' + mins + ' am';
+                } else if (hours === 12) {
+                  return hours + ':' + mins + ' pm';
+                } else if (hours > 12) {
+                  return hours - 12 + ':' + mins + ' pm';
+                } else {
+                  return hours + ':' + mins + ' am';
+                }
+              },
+              weekdays = [
+                'Sunday',
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+                'Saturday'
+              ],
+              months = [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December'
+              ];
+
+          return {
+            events: [{
+              name: evt.name,
+              venueName: evt.venue.name,
+              url: evt.event_url,
+              mapUrl: '',
+              address: evt.venue.address_1,
+              description: evt.description,
+              time: weekdays[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear() + ', ' + formattedTime(date)
+            }]
+          };
+        };
+
+        this.$.ajax.addEventListener('polymer-response', function (e) {
+          var model = buildModel(e.detail.response);
+          this.$.item.model = model;
+        }.bind(this));
+      }
+    });
+  </script>
+</polymer-element>

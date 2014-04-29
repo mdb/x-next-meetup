@@ -1,0 +1,16 @@
+{
+  "name": "x-next-meetup",
+  "version": "0.0.0",
+  "description": "A custom Polymer element for displaying a Meetup's next event",
+  "author": "Mike Ball",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdb/x-next-meetup"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-cli": "~0.1.9"
+  }
+}
