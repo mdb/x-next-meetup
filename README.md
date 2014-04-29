@@ -19,7 +19,7 @@ A [Polymer](http://polymer-project.org) element for displaying a Meetup's next e
 3. Using it:
 
 ```html
-<x-next-meetup groupName="YOUR_MEETUP_GROUP" sigId="USER_ID_WHOSE_FEED_YOU_WANT" sig="YOUR_INSTAGRAM_API_ACCESS_TOKEN"><x-next-meetup>
+<x-next-meetup groupName="YOUR_MEETUP_GROUP" sigId="USER_ID_WHOSE_FEED_YOU_WANT" sig="YOUR_INSTAGRAM_API_ACCESS_TOKEN"></x-next-meetup>
 ```
 
 What's the `groupName`? The name of your Meetup, as it appears in your group's Meetup URL.
