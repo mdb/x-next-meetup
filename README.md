@@ -4,22 +4,35 @@ A [Polymer](http://polymer-project.org) element for displaying a Meetup's next e
 
 ## Usage
 
-1. Import Web Components' polyfill:
+1) Import Web Components' polyfill:
 
 ```html
 <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/0.1.4/platform.js"></script>
 ```
 
-2. Import custom element:
+2) Import custom element:
 
 ```html
 <link rel="import" href="src/x-next-meetup.html">
 ```
 
-3. Using it:
+3) Using it:
 
 ```html
 <x-next-meetup groupName="YOUR_MEETUP_GROUP" sigId="USER_ID_WHOSE_FEED_YOU_WANT" sig="YOUR_INSTAGRAM_API_ACCESS_TOKEN"></x-next-meetup>
+```
+
+This results in unstyled markup:
+
+```html
+<h2><a href="http://www.meetup.com/your-group/events/next-event-id/">Next Event Titlte</a></h2>
+<time>Tuesday, May 13, 2014, 6:00 pm</time>
+<h3><a href="https://www.google.com/maps/place/url+to+event+location+map">Location</a></h3>
+<p>555 Street Name, Philadelphia, Pennsylvania</p>
+<div class="x-next-meetup-description">
+  <p>Your event description.</p>
+</div>
+<a class="x-next-meetup-rsvp" href="http://www.meetup.com/your-group/events/event-id/">RSVP for Next Event Title</a>
 ```
 
 What's the `groupName`? The name of your Meetup, as it appears in your group's Meetup URL.
