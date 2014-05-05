@@ -28,6 +28,14 @@
         var buildModel = function (response) {
           var evt = response.results[0],
               date = new Date(evt.time),
+              formattedAddress = function (evt) {
+                return evt.venue.address_1 + ', ' + evt.venue.city + ', ' + evt.venue.state;
+              },
+              locationQuery = function (evt) {
+                var query = evt.venue.name + ',' + formattedAddress(evt) + '+' + evt.venue.zip;
+
+                return query.replace(/\s/g, '+');
+              },
               formattedTime = function (date) {
                 var mins = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(),
                     hours = date.getHours();
@@ -71,7 +79,7 @@
               name: evt.name,
               venueName: evt.venue.name,
               url: evt.event_url,
-              mapUrl: '',
+              mapUrl: 'https://maps.google.com/?q=' + locationQuery(evt) + '&ll=' + evt.venue.lat + ',' + evt.venue.lon,
               address: evt.venue.address_1,
               description: evt.description,
               time: weekdays[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear() + ', ' + formattedTime(date)
